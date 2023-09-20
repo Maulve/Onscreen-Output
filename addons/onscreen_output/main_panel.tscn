@@ -1,20 +1,19 @@
 [gd_scene load_steps=4 format=3 uid="uid://bkw716jprs1ik"]
 
-[ext_resource type="Script" path="res://addons/screen_console/main_panel.gd" id="1_trmv1"]
+[ext_resource type="Script" path="res://addons/onscreen_output/main_panel.gd" id="1_trmv1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_osyjl"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0dncg"]
 font_size = 24
 
-[node name="MainPanel" type="VBoxContainer" node_paths=PackedStringArray("_left_value")]
+[node name="MainPanel" type="VBoxContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_trmv1")
-_left_value = NodePath("")
 
 [node name="BasicConfigVBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -37,20 +36,6 @@ text = "Debug Enabled: "
 layout_mode = 2
 button_pressed = true
 
-[node name="TimeoutHBoxContainer" type="HBoxContainer" parent="BasicConfigVBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="Label" type="Label" parent="BasicConfigVBoxContainer/TimeoutHBoxContainer"]
-layout_mode = 2
-text = "Timeout: "
-
-[node name="TimeoutLineEdit" type="SpinBox" parent="BasicConfigVBoxContainer/TimeoutHBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-step = 0.1
-value = 30.0
-
 [node name="TimestampHBoxContainer" type="HBoxContainer" parent="BasicConfigVBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
@@ -63,20 +48,6 @@ text = "Show timestamp: "
 layout_mode = 2
 button_pressed = true
 
-[node name="BufferHBoxContainer" type="HBoxContainer" parent="BasicConfigVBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="Label" type="Label" parent="BasicConfigVBoxContainer/BufferHBoxContainer"]
-layout_mode = 2
-text = "Messages buffer:"
-
-[node name="BufferLineEdit" type="SpinBox" parent="BasicConfigVBoxContainer/BufferHBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-max_value = 50.0
-value = 10.0
-
 [node name="LayoutVBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 
@@ -86,19 +57,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_osyjl")
 text = "Layout
 "
 label_settings = SubResource("LabelSettings_0dncg")
-
-[node name="VerticalSpaceHBoxContainer" type="HBoxContainer" parent="LayoutVBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="VerticalSpaceLabel" type="Label" parent="LayoutVBoxContainer/VerticalSpaceHBoxContainer"]
-layout_mode = 2
-text = "Vertical Space: "
-
-[node name="VerticalSpaceLineEdit" type="SpinBox" parent="LayoutVBoxContainer/VerticalSpaceHBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-value = 40.0
 
 [node name="AnchorHBoxContainer" type="HBoxContainer" parent="LayoutVBoxContainer"]
 layout_mode = 2
@@ -111,7 +69,7 @@ text = "Anchor to: "
 layout_mode = 2
 disabled = true
 item_count = 4
-selected = 0
+selected = 1
 popup/item_0/text = "Top-Left"
 popup/item_0/id = 0
 popup/item_1/text = "Top-Right"
@@ -142,7 +100,7 @@ text = "Font Color:"
 [node name="ColorPickerButton" type="ColorPickerButton" parent="AppearanceVBoxContainer/FontColorHBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-color = Color(0.0627451, 0.713726, 0, 1)
+color = Color(0.776471, 0.792157, 0.827451, 1)
 
 [node name="BackgroundColorHBoxContainer" type="HBoxContainer" parent="AppearanceVBoxContainer"]
 layout_mode = 2
@@ -155,7 +113,6 @@ text = "Background Color:"
 [node name="ColorPickerButton" type="ColorPickerButton" parent="AppearanceVBoxContainer/BackgroundColorHBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-color = Color(0.490196, 0.490196, 0.490196, 0.490196)
 
 [node name="FontSizeHBoxContainer" type="HBoxContainer" parent="AppearanceVBoxContainer"]
 layout_mode = 2
@@ -168,7 +125,7 @@ text = "Font Size: "
 [node name="FontSizeLineEdit" type="SpinBox" parent="AppearanceVBoxContainer/FontSizeHBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-value = 36.0
+value = 16.0
 
 [node name="SaveButton" type="Button" parent="."]
 layout_mode = 2
