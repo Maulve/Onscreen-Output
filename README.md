@@ -15,6 +15,13 @@ Step 2: Put the `assets` folder into your Godot Project
 Step 3: Enable the Addon in Project->Project Settings->Plugins
 Step 4: Reload your Project
 
+## Usage
+
+`scrnOutput.print(message : String)`
+
+Example:
+`scrnOutput.print("Hello World!")`
+
 # Improvements
 Improvements the fork already has
 
@@ -32,3 +39,4 @@ Planned features and improvements
 - Improved config menu
 - Config for Output size
 - small UI improvements
+- Export to file
