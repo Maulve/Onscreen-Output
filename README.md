@@ -29,13 +29,12 @@ Improvements the fork already has
 - by using RichTextLabels, it also has a scroll system instead of a disappearing system
   (Output Messages don't get deleted)
 - Improved formatting with Timestamp
-- Removal of unecessary features
+- Anchor support
 
 # Roadmap
 Planned features and improvements
 
 - hide/show button to toggle visibility of the Onscreen Output in-game
-- Anchor support
 - Improved config menu
 - Config for Output size
 - small UI improvements
