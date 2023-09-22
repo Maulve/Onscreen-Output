@@ -67,7 +67,6 @@ text = "Anchor to: "
 
 [node name="AnchorOptionButton" type="OptionButton" parent="LayoutVBoxContainer/AnchorHBoxContainer"]
 layout_mode = 2
-disabled = true
 item_count = 4
 selected = 1
 popup/item_0/text = "Top-Left"
@@ -113,6 +112,7 @@ text = "Background Color:"
 [node name="ColorPickerButton" type="ColorPickerButton" parent="AppearanceVBoxContainer/BackgroundColorHBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+color = Color(0.0980392, 0.109804, 0.184314, 1)
 
 [node name="FontSizeHBoxContainer" type="HBoxContainer" parent="AppearanceVBoxContainer"]
 layout_mode = 2

@@ -23,6 +23,41 @@ var _config_path : String = "res://addons/onscreen_output/plugin.cfg"
 
 var start : int = 0
 
+const ANCHORS : Dictionary = {
+	"TOP_LEFT" : {
+		"anchor_left" : 0,
+		"anchor_top" : 0,
+		"anchor_right" : 0,
+		"anchor_bottom" : 0,
+		"grow_horizontal" : 1,
+		"grow_vertical": 1
+	},
+	"TOP_RIGHT" : {
+		"anchor_left" : 1,
+		"anchor_top" : 0,
+		"anchor_right" : 1,
+		"anchor_bottom" : 0, 
+		"grow_horizontal" : 0,
+		"grow_vertical": 1
+	},
+	"BOTTOM_RIGHT" : {
+		"anchor_left" : 1,
+		"anchor_top" : 1,
+		"anchor_right" : 1,
+		"anchor_bottom" : 1,
+		"grow_horizontal" : 0,
+		"grow_vertical": 0
+	},
+	"BOTTOM_LEFT" : {
+		"anchor_left" : 0,
+		"anchor_top" : 1,
+		"anchor_right" : 0,
+		"anchor_bottom" : 1,
+		"grow_horizontal" : 1,
+		"grow_vertical": 0
+	}
+}
+
 
 func _ready():
 	_load_config()
@@ -35,22 +70,34 @@ func _ready():
 	if !Engine.is_editor_hint() and _show_timestamp:
 		start = Time.get_ticks_msec()
 
+# THIS FUNC IS ESSENTIAL
+# The built-in Control.LayoutPreset options don't work properly
+# likely Godot bug
+func _set_label_anchor(anchor : Dictionary):
+	
+	log_label.anchor_left = anchor["anchor_left"]
+	log_label.anchor_top = anchor["anchor_top"]
+	log_label.anchor_right = anchor["anchor_right"]
+	log_label.anchor_bottom = anchor["anchor_bottom"] 
+	
+	log_label.grow_horizontal = anchor["grow_horizontal"]
+	log_label.grow_vertical = anchor["grow_vertical"]
+
 
 func _setup():
 	
 	# Configure label visuals
 	log_label.add_theme_font_size_override("normal_font_size", _font_size)
 	
-	#match _anchor:
-		#0: # Top-Left
-			#log_label.set_anchors_preset(Control.PRESET_TOP_LEFT)
-		#1: # Top-Right
-			#log_label.set_anchors_preset(Control.PRESET_TOP_RIGHT)
-		#2: # Bottom-Left
-			#log_label.set_anchors_preset(Control.PRESET_BOTTOM_LEFT)
-		#3: # Bottom-Right
-			#log_label.set_anchors_preset(Control.PRESET_BOTTOM_RIGHT)
-	
+	match _anchor:
+		0: # Top-Left
+			_set_label_anchor(ANCHORS["TOP_LEFT"])
+		1: # Top-Right
+			_set_label_anchor(ANCHORS["TOP_RIGHT"])
+		2: # Bottom-Left
+			_set_label_anchor(ANCHORS["BOTTOM_LEFT"])
+		3: # Bottom-Right
+			_set_label_anchor(ANCHORS["BOTTOM_RIGHT"])
 	
 	# Create a new ColorRect
 	var color_rect = $Control/RichTextLabel/ColorRect
