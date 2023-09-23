@@ -3,7 +3,6 @@ extends CanvasLayer
 class_name OnscrnOutput
 
 var _messages_on_screen : int
-var _last_top_position : int = 0
 
 var _debug_enabled : bool = false
 var _show_timestamp : bool
@@ -16,12 +15,16 @@ var _plugin_config : ConfigFile
 
 var _config_path : String = "res://addons/onscreen_output/plugin.cfg"
 
-
 @onready var main_control = $Control
 
 @onready var log_label = $Control/RichTextLabel
+@onready var color_rect = $Control/RichTextLabel/ColorRect
+@onready var btn_control = $Control/BtnControl
+@onready var toggle_btn = $Control/BtnControl/ToggleBtn
 
 var start : int = 0
+
+var _visible : bool = true
 
 const ANCHORS : Dictionary = {
 	"TOP_LEFT" : {
@@ -58,56 +61,122 @@ const ANCHORS : Dictionary = {
 	}
 }
 
-
 func _ready():
 	_load_config()
 	_setup()
 	
-	if !Engine.is_editor_hint():
-		_load_config()
-		_setup()
+	#if !Engine.is_editor_hint():
+		#_load_config()
+		#_setup()
 	
 	if !Engine.is_editor_hint() and _show_timestamp:
 		start = Time.get_ticks_msec()
 
-# THIS FUNC IS ESSENTIAL
-# The built-in Control.LayoutPreset options don't work properly
-# likely Godot bug
-func _set_label_anchor(anchor : Dictionary):
+func _set_control_anchor(control : Control,anchor : Dictionary):
+	# THIS FUNC IS ESSENTIAL
+	# The built-in Control.LayoutPreset options don't work properly
+	# likely Godot bug
 	
-	log_label.anchor_left = anchor["anchor_left"]
-	log_label.anchor_top = anchor["anchor_top"]
-	log_label.anchor_right = anchor["anchor_right"]
-	log_label.anchor_bottom = anchor["anchor_bottom"] 
+	control.anchor_left = anchor["anchor_left"]
+	control.anchor_top = anchor["anchor_top"]
+	control.anchor_right = anchor["anchor_right"]
+	control.anchor_bottom = anchor["anchor_bottom"] 
 	
-	log_label.grow_horizontal = anchor["grow_horizontal"]
-	log_label.grow_vertical = anchor["grow_vertical"]
+	control.grow_horizontal = anchor["grow_horizontal"]
+	control.grow_vertical = anchor["grow_vertical"]
 
+func _set_same_anchor(target : Control, origin : Control):
+	target.anchor_left = target.anchor_left
+	target.anchor_top = target.anchor_top
+	target.anchor_right = target.anchor_right
+	target.anchor_bottom = target.anchor_bottom
+	
+	target.grow_horizontal = target.grow_horizontal
+	target.grow_vertical = target.grow_vertical
+	
+	target.offset_bottom = 0
+	target.offset_left = 0
+	target.offset_right = 0
+	target.offset_top = 0
+
+func _toggle_visible(value : bool):
+	
+	log_label.visible = value
+	
+	if not value:
+		
+		match _anchor:
+			0: # Top-Left
+				_set_control_anchor(toggle_btn, ANCHORS["TOP_LEFT"])
+			1: # Top-Right
+				_set_control_anchor(toggle_btn, ANCHORS["TOP_RIGHT"])
+			2: # Bottom-Left
+				_set_control_anchor(toggle_btn, ANCHORS["BOTTOM_LEFT"])
+			3: # Bottom-Right
+				_set_control_anchor(toggle_btn, ANCHORS["BOTTOM_RIGHT"])
+	
+	else:
+		
+		match _anchor:
+			0: # Top-Left
+				_set_control_anchor(toggle_btn, ANCHORS["BOTTOM_LEFT"])
+				toggle_btn.grow_vertical = 1
+			1: # Top-Right
+				_set_control_anchor(toggle_btn, ANCHORS["BOTTOM_RIGHT"])
+				toggle_btn.grow_vertical = 1
+			2: # Bottom-Left
+				_set_control_anchor(toggle_btn, ANCHORS["TOP_LEFT"])
+				toggle_btn.grow_vertical = 0
+			3: # Bottom-Right
+				_set_control_anchor(toggle_btn, ANCHORS["TOP_RIGHT"])
+				toggle_btn.grow_vertical = 0
 
 func _setup():
 	
-	# Configure label visuals
 	log_label.add_theme_font_size_override("normal_font_size", _font_size)
+	
+	toggle_btn.text = "Hide"
+	toggle_btn.toggled.connect(func(toggled_on):
+		_toggle_visible(!toggled_on)
+		if !toggled_on:
+			toggle_btn.text = "Hide"
+		else:
+			toggle_btn.text = "Show"
+		)
 	
 	match _anchor:
 		0: # Top-Left
-			_set_label_anchor(ANCHORS["TOP_LEFT"])
+			_set_control_anchor(log_label, ANCHORS["TOP_LEFT"])
+			_set_control_anchor(btn_control, ANCHORS["TOP_LEFT"])
+			
+			_set_control_anchor(toggle_btn, ANCHORS["BOTTOM_LEFT"])
+			toggle_btn.grow_vertical = 1
+			
 		1: # Top-Right
-			_set_label_anchor(ANCHORS["TOP_RIGHT"])
+			_set_control_anchor(log_label, ANCHORS["TOP_RIGHT"])
+			_set_control_anchor(btn_control, ANCHORS["TOP_RIGHT"])
+			
+			_set_control_anchor(toggle_btn, ANCHORS["BOTTOM_RIGHT"])
+			toggle_btn.grow_vertical = 1
+			
 		2: # Bottom-Left
-			_set_label_anchor(ANCHORS["BOTTOM_LEFT"])
+			_set_control_anchor(log_label, ANCHORS["BOTTOM_LEFT"])
+			_set_control_anchor(btn_control, ANCHORS["BOTTOM_LEFT"])
+			
+			_set_control_anchor(toggle_btn, ANCHORS["TOP_LEFT"])
+			toggle_btn.grow_vertical = 0
+			
 		3: # Bottom-Right
-			_set_label_anchor(ANCHORS["BOTTOM_RIGHT"])
+			_set_control_anchor(log_label, ANCHORS["BOTTOM_RIGHT"])
+			_set_control_anchor(btn_control, ANCHORS["BOTTOM_RIGHT"])
+			
+			_set_control_anchor(toggle_btn, ANCHORS["TOP_RIGHT"])
+			toggle_btn.grow_vertical = 0
 	
-	# Create a new ColorRect
-	var color_rect = $Control/RichTextLabel/ColorRect
 	
-	# Set the color of the ColorRect using a hex value
 	color_rect.color = Color(_background_color)
-	color_rect.color.a = 100
 	
-	# sets visibility to false
-	visible = false
+	visible = !Engine.is_editor_hint() and _debug_enabled
 
 
 func _load_config():
@@ -133,8 +202,6 @@ func print(message : String):
 		printerr("Onscreen Output: Tried to print, but debug is disabled.")
 		return
 	
-	if not visible:
-		visible = true
 	
 	log_label.append_text(" > " + message)
 
