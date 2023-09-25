@@ -2,7 +2,7 @@
 extends CanvasLayer
 class_name OnscrnOutput
 
-var _messages_on_screen : int
+var log_id : int = 1
 
 var _debug_enabled : bool = false
 var _show_timestamp : bool
@@ -10,6 +10,8 @@ var _font_color : String
 var _background_color : String
 var _font_size : float
 var _anchor : int
+var _save_logs : bool = false
+var _save_path : String = "user://"
 
 var _plugin_config : ConfigFile
 
@@ -25,6 +27,8 @@ var _config_path : String = "res://addons/onscreen_output/plugin.cfg"
 var start : int = 0
 
 var _visible : bool = true
+
+var was_in_editor : bool = true
 
 const ANCHORS : Dictionary = {
 	"TOP_LEFT" : {
@@ -64,10 +68,6 @@ const ANCHORS : Dictionary = {
 func _ready():
 	_load_config()
 	_setup()
-	
-	#if !Engine.is_editor_hint():
-		#_load_config()
-		#_setup()
 	
 	if !Engine.is_editor_hint() and _show_timestamp:
 		start = Time.get_ticks_msec()
@@ -133,6 +133,13 @@ func _toggle_visible(value : bool):
 
 func _setup():
 	
+	#if !was_in_editor:
+		
+		
+		#pass
+	
+	#was_in_editor = Engine.is_editor_hint()
+	
 	log_label.add_theme_font_size_override("normal_font_size", _font_size)
 	
 	toggle_btn.text = "Hide"
@@ -195,7 +202,14 @@ func _load_config():
 	_background_color = _plugin_config.get_value("config", "background_color")
 	_font_size = float(_plugin_config.get_value("config", "font_size"))
 	_anchor = int(_plugin_config.get_value("config", "anchor"))
+	_save_logs = bool(_plugin_config.get_value("config", "save_logs"))
+	_save_path = str(_plugin_config.get_value("config", "save_path"))
+	log_id = int(_plugin_config.get_value("config", "log_id"))
 
+func _save_config():
+	_plugin_config.set_value("config", "log_id", log_id)
+	
+	_plugin_config.save(_config_path)
 
 func print(message : String):
 	if not _debug_enabled:
@@ -211,8 +225,6 @@ func print(message : String):
 		log_label.pop()
 	
 	log_label.newline()
-	
-	_messages_on_screen += 1
 
 func _get_timestamp() -> String:
 	var time_ms : int = Time.get_ticks_msec() - start
@@ -232,3 +244,19 @@ func _get_timestamp() -> String:
 	var timestamp_string : String = "%dmin %ds %dms" % [time_min, time_s, time_ms]
 	
 	return timestamp_string
+
+func _notification(what):
+	if what == NOTIFICATION_WM_CLOSE_REQUEST and _save_logs:
+		
+		if !_save_path.ends_with("/"):
+			_save_path += "/"
+		
+		if !DirAccess.dir_exists_absolute(_save_path):
+			DirAccess.make_dir_absolute(_save_path)
+			
+		var file = FileAccess.open(_save_path + "OnscrnOutput_LOG%d.txt" % log_id, FileAccess.WRITE)
+		file.store_string(log_label.get_parsed_text())
+		file.close()
+		log_id += 1
+		
+		_save_config()
