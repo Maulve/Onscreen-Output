@@ -11,8 +11,11 @@ Furthermore, this Onscreen Output will receive more features going forward.
 Currently, the plugin is only available here on GitHub. (AssetLib release planned)
 
 Step 1: Copy the `addons/onscreen-output` folder from this repository
+
 Step 2: Put the folder into your Godot Project
+
 Step 3: Enable the Addon in Project>Project Settings>Plugins
+
 Step 4: Reload your Project
 
 ## Usage
@@ -30,11 +33,11 @@ Improvements the fork already has
   (Output Messages don't get deleted)
 - Improved formatting with Timestamp
 - Anchor support
+- Hide/Show Button to toggle visibility of the Onscreen Output in-game
 
 # Roadmap
 Planned features and improvements
 
-- hide/show button to toggle visibility of the Onscreen Output in-game
 - Improved config menu
 - Config for Output size
 - small UI improvements
