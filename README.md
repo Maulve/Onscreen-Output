@@ -18,6 +18,11 @@ Step 3: Enable the Addon in Project>Project Settings>Plugins
 
 Step 4: Reload your Project
 
+**OR**
+
+Download from the Asset Library!
+[On the website](https://godotengine.org/asset-library/asset/2244) or in the Godot Editor
+
 ## Usage
 
 `scrnOutput.print(message : String)`
