@@ -33,7 +33,8 @@ Improvements the fork already has
   (Output Messages don't get deleted)
 - Improved formatting with Timestamp
 - Anchor support
-- Hide/Show Button to toggle visibility of the Onscreen Output in-game
+- Hide/Show Button to toggle visibility of the Onscreen Output in-game (to be improved)
+- Export to file
 
 # Roadmap
 Planned features and improvements
@@ -41,4 +42,4 @@ Planned features and improvements
 - Improved config menu
 - Config for Output size
 - small UI improvements
-- Export to file
+
