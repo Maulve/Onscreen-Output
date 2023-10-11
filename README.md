@@ -8,7 +8,7 @@ continue to improve.
 Furthermore, this Onscreen Output will receive more features going forward.
 
 # Installation
-Currently, the plugin is only available here on GitHub. (AssetLib release planned)
+Direct Download from Github:
 
 Step 1: Copy the `addons/onscreen-output` folder from this repository
 
