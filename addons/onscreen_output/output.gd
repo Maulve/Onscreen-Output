@@ -85,20 +85,6 @@ func _set_control_anchor(control : Control,anchor : Dictionary):
 	control.grow_horizontal = anchor["grow_horizontal"]
 	control.grow_vertical = anchor["grow_vertical"]
 
-func _set_same_anchor(target : Control, origin : Control):
-	target.anchor_left = target.anchor_left
-	target.anchor_top = target.anchor_top
-	target.anchor_right = target.anchor_right
-	target.anchor_bottom = target.anchor_bottom
-	
-	target.grow_horizontal = target.grow_horizontal
-	target.grow_vertical = target.grow_vertical
-	
-	target.offset_bottom = 0
-	target.offset_left = 0
-	target.offset_right = 0
-	target.offset_top = 0
-
 func _toggle_visible(value : bool):
 	
 	log_label.visible = value
@@ -132,13 +118,6 @@ func _toggle_visible(value : bool):
 				toggle_btn.grow_vertical = 0
 
 func _setup():
-	
-	#if !was_in_editor:
-		
-		
-		#pass
-	
-	#was_in_editor = Engine.is_editor_hint()
 	
 	log_label.add_theme_font_size_override("normal_font_size", _font_size)
 	
