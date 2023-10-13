@@ -102,6 +102,14 @@ func _set_control_anchor(control: Control,anchor: Dictionary):
 
 func _setup():
 	
+	var viewport_size := DisplayServer.window_get_size()
+	
+	viewport_size.x = viewport_size.x / 4
+	viewport_size.y = viewport_size.y / 2
+	
+	log_label.custom_minimum_size = viewport_size
+	log_label.size = viewport_size
+	
 	log_label.add_theme_font_size_override("normal_font_size", _font_size)
 	
 	match _anchor:

@@ -3,7 +3,6 @@
 [ext_resource type="Script" path="res://addons/onscreen_output/output.gd" id="1_ntmpl"]
 
 [node name="OnscreenOutput" type="CanvasLayer"]
-visible = false
 script = ExtResource("1_ntmpl")
 
 [node name="Control" type="Control" parent="."]
