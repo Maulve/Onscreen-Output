@@ -100,9 +100,6 @@ func _set_control_anchor(control: Control,anchor: Dictionary):
 	control.grow_horizontal = anchor["grow_horizontal"]
 	control.grow_vertical = anchor["grow_vertical"]
 
-func _toggle_visible(value: bool):
-	log_label.visible = value
-
 func _setup():
 	
 	log_label.add_theme_font_size_override("normal_font_size", _font_size)
