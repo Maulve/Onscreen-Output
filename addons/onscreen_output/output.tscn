@@ -1,15 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://bjetmrco2b8bw"]
+[gd_scene load_steps=2 format=3 uid="uid://bjetmrco2b8bw"]
 
 [ext_resource type="Script" path="res://addons/onscreen_output/output.gd" id="1_ntmpl"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v32iy"]
-bg_color = Color(0.0352941, 0.0431373, 0.0901961, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cm3lv"]
-bg_color = Color(0.0941176, 0.109804, 0.188235, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wcmgu"]
-bg_color = Color(0.188235, 0.207843, 0.333333, 1)
 
 [node name="OnscreenOutput" type="CanvasLayer"]
 visible = false
@@ -46,23 +37,3 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0.0980392, 0.109804, 0.184314, 1)
-
-[node name="BtnControl" type="Control" parent="Control"]
-custom_minimum_size = Vector2(300, 400)
-layout_mode = 1
-anchors_preset = 0
-mouse_filter = 2
-
-[node name="ToggleBtn" type="Button" parent="Control/BtnControl"]
-custom_minimum_size = Vector2(100, 40)
-layout_mode = 1
-anchors_preset = -1
-anchor_top = 1.0
-anchor_bottom = 1.0
-focus_mode = 0
-theme_override_font_sizes/font_size = 19
-theme_override_styles/normal = SubResource("StyleBoxFlat_v32iy")
-theme_override_styles/hover = SubResource("StyleBoxFlat_cm3lv")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_wcmgu")
-toggle_mode = true
-text = "Hide"

@@ -22,25 +22,20 @@ func _enter_tree():
 		else:
 			_set_visible(false))
 	
-
 func _exit_tree():
 	if main_panel_instance:
 		main_panel_instance.queue_free()
-
 
 func _set_visible(visible):
 	if main_panel_instance:
 		main_panel_instance.visible = visible
 
-
 func _get_plugin_name():
 	return "Onscreen Output"
 	
-
 func _has_main_screen():
 	return true
 	
-
 func _get_plugin_icon():
 	return EditorInterface.get_base_control().get_theme_icon("Node", "EditorIcons")
 
