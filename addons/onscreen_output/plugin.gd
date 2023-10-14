@@ -1,9 +1,9 @@
 @tool
-extends EditorPlugin
+class_name OnscreenOutputPlugin extends EditorPlugin
 
 const MAIN_PANEL = preload("res://addons/onscreen_output/main_panel.tscn")
 
-var main_panel_instance
+var main_panel_instance: Node
 
 func _init() -> void:
 	add_autoload_singleton("scrnOutput", "res://addons/onscreen_output/output.tscn")

@@ -1,6 +1,7 @@
 @tool
-extends CanvasLayer
-class_name OnscrnOutput
+class_name OnscrnOutput extends CanvasLayer
+
+signal update_size
 
 var log_id: int = 1
 
@@ -12,6 +13,7 @@ var _font_size: float
 var _anchor: int
 var _save_logs: bool = false
 var _save_path: String = "user://"
+var _size: Vector2 = Vector2()
 
 var _plugin_config: ConfigFile
 
@@ -71,7 +73,6 @@ func _ready():
 		start = Time.get_ticks_msec()
 	
 	# Set Keybind
-	
 	var event := InputEventKey.new()
 	event.keycode = KEY_A
 	event.ctrl_pressed = true
@@ -101,14 +102,19 @@ func _set_control_anchor(control: Control,anchor: Dictionary):
 	control.grow_vertical = anchor["grow_vertical"]
 
 func _setup():
+	log_label.custom_minimum_size.x = DisplayServer.window_get_size().x / 4
+	log_label.custom_minimum_size.y = DisplayServer.window_get_size().y / 2
 	
-	var viewport_size := DisplayServer.window_get_size()
+	if _size.x == 0:
+		log_label.size.x = DisplayServer.window_get_size().x / 4
+	elif _size.y == 0:
+		log_label.size.y = DisplayServer.window_get_size().y / 2
+	else:
+		log_label.size = _size
 	
-	viewport_size.x = viewport_size.x / 4
-	viewport_size.y = viewport_size.y / 2
+	_size = log_label.size
 	
-	log_label.custom_minimum_size = viewport_size
-	log_label.size = viewport_size
+	update_size.emit()
 	
 	log_label.add_theme_font_size_override("normal_font_size", _font_size)
 	
@@ -150,6 +156,8 @@ func _load_config():
 	_save_logs = bool(_plugin_config.get_value("config", "save_logs"))
 	_save_path = str(_plugin_config.get_value("config", "save_path"))
 	log_id = int(_plugin_config.get_value("config", "log_id"))
+	_size.x = int(_plugin_config.get_value("config", "size_x"))
+	_size.y = int(_plugin_config.get_value("config", "size_y"))
 
 func _save_config():
 	_plugin_config.set_value("config", "log_id", log_id)
@@ -191,7 +199,12 @@ func _get_timestamp() -> String:
 	return timestamp_string
 
 func _notification(what):
-	if what == NOTIFICATION_WM_CLOSE_REQUEST and _save_logs:
+	if what == NOTIFICATION_WM_CLOSE_REQUEST:
+		
+		if !_save_logs:
+			return
+		
+		_save_path.replace("\\", "/")
 		
 		if !_save_path.ends_with("/"):
 			_save_path += "/"
