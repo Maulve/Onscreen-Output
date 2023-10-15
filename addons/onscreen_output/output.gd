@@ -1,7 +1,4 @@
-@tool
-class_name OnscrnOutput extends CanvasLayer
-
-signal update_size
+extends CanvasLayer
 
 var log_id: int = 1
 
@@ -66,6 +63,8 @@ const ANCHORS: Dictionary = {
 func _ready():
 	visible = false
 	
+	print_debug(str(self) + "scrn")
+	
 	_load_config()
 	_setup()
 	
@@ -106,15 +105,13 @@ func _setup():
 	log_label.custom_minimum_size.y = DisplayServer.window_get_size().y / 2
 	
 	if _size.x == 0:
-		log_label.size.x = DisplayServer.window_get_size().x / 4
-	elif _size.y == 0:
-		log_label.size.y = DisplayServer.window_get_size().y / 2
-	else:
-		log_label.size = _size
+		_size.x = DisplayServer.window_get_size().x / 4
+	if _size.y == 0:
+		_size.y = DisplayServer.window_get_size().y / 2
 	
 	_size = log_label.size
 	
-	update_size.emit()
+	
 	
 	log_label.add_theme_font_size_override("normal_font_size", _font_size)
 	

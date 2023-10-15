@@ -3,7 +3,7 @@ class_name OnscreenOutputPlugin extends EditorPlugin
 
 const MAIN_PANEL = preload("res://addons/onscreen_output/main_panel.tscn")
 
-var main_panel_instance: Node
+var main_panel_instance : ScrnOutputMainPanel
 
 func _init() -> void:
 	add_autoload_singleton("scrnOutput", "res://addons/onscreen_output/output.tscn")
@@ -15,6 +15,8 @@ func _enter_tree():
 	# Hide the main panel. Very much required.
 	_set_visible(false)
 	
+	print_debug("Enter")
+	
 	# logic for showing the main scene
 	main_screen_changed.connect(func(screen_name):
 		if screen_name == "Onscreen Output":
@@ -25,6 +27,7 @@ func _enter_tree():
 func _exit_tree():
 	if main_panel_instance:
 		main_panel_instance.queue_free()
+		print_debug("Exit")
 
 func _set_visible(visible):
 	if main_panel_instance:
