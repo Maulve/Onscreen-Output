@@ -15,8 +15,6 @@ func _enter_tree():
 	# Hide the main panel. Very much required.
 	_set_visible(false)
 	
-	print_debug("Enter")
-	
 	# logic for showing the main scene
 	main_screen_changed.connect(func(screen_name):
 		if screen_name == "Onscreen Output":
@@ -27,7 +25,6 @@ func _enter_tree():
 func _exit_tree():
 	if main_panel_instance:
 		main_panel_instance.queue_free()
-		print_debug("Exit")
 
 func _set_visible(visible):
 	if main_panel_instance:

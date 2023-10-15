@@ -16,14 +16,8 @@ func _ready():
 	
 	btn.texture_normal = EditorInterface.get_base_control().get_theme_icon("Folder", "EditorIcons")
 	
-	
-		
 	$SaveButton.connect("pressed", _on_save_button_pressed)
-	print_debug(scrnOutput)
 	
-
-#func _physics_process(_delta: float) -> void:
-	#print("I am here")
 
 func _on_save_button_pressed():
 	_save_config()

@@ -63,8 +63,6 @@ const ANCHORS: Dictionary = {
 func _ready():
 	visible = false
 	
-	print_debug(str(self) + "scrn")
-	
 	_load_config()
 	_setup()
 	
