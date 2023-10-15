@@ -20,7 +20,7 @@ Step 4: Reload your Project
 
 **OR**
 
-Download from the Asset Library!
+Download from the Asset Library! **(Currently Outdated and only for 4.1.x)**
 [On the website](https://godotengine.org/asset-library/asset/2244) or in the Godot Editor
 
 ## Usage
@@ -33,18 +33,15 @@ Example:
 # Improvements
 Improvements the fork already has
 
-- Performance improvements (by using a singular RichTextLabel instead of multiple Labels)
-- by using RichTextLabels, it also has a scroll system instead of a disappearing system
-  (Output Messages don't get deleted)
+- Output scrolling
 - Improved formatting with Timestamp
 - Anchor support
-- Hide/Show Button to toggle visibility of the Onscreen Output in-game (to be improved)
+- Hide/Show the Output with Ctrl+Shift+A
 - Export to file
+- Change the size of the Output
 
 # Roadmap
 Planned features and improvements
 
-- Improved config menu
-- Config for Output size
-- small UI improvements
+- more UI improvements
 
