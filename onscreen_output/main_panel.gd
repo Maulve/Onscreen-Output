@@ -1,6 +1,8 @@
 @tool
 class_name ScrnOutputMainPanel extends VBoxContainer
 
+var folder_icon = preload("res://addons/onscreen_output/Ignore/Folder.svg")
+
 var _plugin_config : ConfigFile
 
 var _config_path : String = "res://addons/onscreen_output/plugin.cfg"
@@ -13,7 +15,7 @@ var file_dialog : FileDialog
 
 func _ready():
 	_load_config()
-	btn.texture_normal = get_tree().get_root().get_child(0).get_gui_base().get_icon("Folder", "EditorIcons")
+	btn.texture_normal = folder_icon
 	
 	$SaveButton.connect("pressed", _on_save_button_pressed)
 	
