@@ -37,5 +37,5 @@ func _has_main_screen():
 	return true
 	
 func _get_plugin_icon():
-	return EditorInterface.get_base_control().get_theme_icon("Node", "EditorIcons")
+	return get_editor_interface().get_base_control().get_theme_icon("Node", "EditorIcons")
 

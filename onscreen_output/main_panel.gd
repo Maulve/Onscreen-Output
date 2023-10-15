@@ -13,8 +13,7 @@ var file_dialog : FileDialog
 
 func _ready():
 	_load_config()
-	
-	btn.texture_normal = EditorInterface.get_base_control().get_theme_icon("Folder", "EditorIcons")
+	btn.texture_normal = get_tree().get_root().get_child(0).get_gui_base().get_icon("Folder", "EditorIcons")
 	
 	$SaveButton.connect("pressed", _on_save_button_pressed)
 	
