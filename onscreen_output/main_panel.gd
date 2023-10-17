@@ -7,14 +7,15 @@ var _plugin_config : ConfigFile
 
 var _config_path : String = "res://addons/onscreen_output/plugin.cfg"
 
-@onready var btn = $BasicConfig/SavePath/Button
+@onready var btn: Button = $BasicConfig/SavePath/Button
 var file_dialog : FileDialog
 
-@onready var line_edit_x = $Appearance/Size/X/LineEdit
-@onready var line_edit_y = $Appearance/Size/Y/LineEdit
+@onready var line_edit_x: LineEdit = $Appearance/Size/X/LineEdit
+@onready var line_edit_y: LineEdit = $Appearance/Size/Y/LineEdit
 
 func _ready():
 	_load_config()
+	
 	btn.texture_normal = folder_icon
 	
 	$SaveButton.connect("pressed", _on_save_button_pressed)
@@ -26,10 +27,8 @@ func _on_save_button_pressed():
 func _load_config():
 	_plugin_config = ConfigFile.new()
 	
-	# Load data from a file.
 	var err = _plugin_config.load(_config_path)
-
-	# If the file didn't load, ignore it.
+	
 	if err != OK:
 		printerr("Screen Output: Failed to load config. %s might be damaged or missing." % _config_path)
 		return
@@ -50,6 +49,7 @@ func _load_config():
 	
 	$BasicConfig/SavePath/TextEdit.text = str(_plugin_config.get_value("config", "save_path"))
 	
+	# calculate size if 0
 	$Appearance/Size/X/LineEdit.value = int(_plugin_config.get_value("config", "size_x"))
 	var size_x = $Appearance/Size/X/LineEdit.value
 	if size_x == 0:
@@ -79,6 +79,7 @@ func _save_config():
 	
 	_plugin_config.set_value("config", "save_path", $BasicConfig/SavePath/TextEdit.text)
 	
+	# calculate size if 0
 	var size_x = $Appearance/Size/X/LineEdit.value
 	if size_x == 0:
 		size_x = DisplayServer.window_get_size().x / 4

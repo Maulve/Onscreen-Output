@@ -16,14 +16,12 @@ var _plugin_config: ConfigFile
 
 var _config_path: String = "res://addons/onscreen_output/plugin.cfg"
 
-@onready var main_control = $Control
+@onready var main_control: Control = $Control
 
-@onready var log_label = $Control/RichTextLabel
-@onready var color_rect = $Control/RichTextLabel/ColorRect
+@onready var log_label: RichTextLabel = $Control/RichTextLabel
+@onready var color_rect: ColorRect = $Control/RichTextLabel/ColorRect
 
 var start: int = 0
-
-var _visible: bool = true
 
 const ANCHORS: Dictionary = {
 	"TOP_LEFT" : {
@@ -66,7 +64,7 @@ func _ready():
 	_load_config()
 	_setup()
 	
-	if !Engine.is_editor_hint() and _show_timestamp:
+	if _show_timestamp:
 		start = Time.get_ticks_msec()
 	
 	# Set Keybind
@@ -80,9 +78,8 @@ func _ready():
 	InputMap.action_add_event("OnscreenOutput_toggle", event)
 
 func _physics_process(_delta: float) -> void:
-	if !Engine.is_editor_hint():
-		if Input.is_action_just_pressed("OnscreenOutput_toggle"):
-			visible = !visible
+	if Input.is_action_just_pressed("OnscreenOutput_toggle"):
+		visible = !visible
 
 func _set_control_anchor(control: Control,anchor: Dictionary):
 	# As of 4.1, not tested again in 4.2
@@ -129,7 +126,7 @@ func _setup():
 	
 	color_rect.color = Color(_background_color)
 	
-	visible = !Engine.is_editor_hint() and _debug_enabled
+	visible = _debug_enabled
 
  
 func _load_config():
@@ -161,7 +158,6 @@ func _save_config():
 
 func print(message: String):
 	if not _debug_enabled:
-		printerr("Onscreen Output: Tried to print, but debug is disabled.")
 		return
 	
 	
@@ -194,10 +190,7 @@ func _get_timestamp() -> String:
 	return timestamp_string
 
 func _notification(what):
-	if what == NOTIFICATION_WM_CLOSE_REQUEST:
-		
-		if !_save_logs:
-			return
+	if what == NOTIFICATION_WM_CLOSE_REQUEST and _save_logs:
 		
 		_save_path.replace("\\", "/")
 		
