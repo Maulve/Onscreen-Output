@@ -81,19 +81,19 @@ func _physics_process(_delta: float) -> void:
 	if Input.is_action_just_pressed("OnscreenOutput_toggle"):
 		visible = !visible
 
-func _set_control_anchor(control: Control,anchor: Dictionary):
+#func _set_control_anchor(control: Control,anchor: Dictionary):
 	# As of 4.1, not tested again in 4.2
 	# THIS FUNC IS ESSENTIAL
 	# The built-in Control.LayoutPreset options don't work properly
 	# likely Godot bug
-	
-	control.anchor_left = anchor["anchor_left"]
-	control.anchor_top = anchor["anchor_top"]
-	control.anchor_right = anchor["anchor_right"]
-	control.anchor_bottom = anchor["anchor_bottom"] 
-	
-	control.grow_horizontal = anchor["grow_horizontal"]
-	control.grow_vertical = anchor["grow_vertical"]
+	#
+	#control.anchor_left = anchor["anchor_left"]
+	#control.anchor_top = anchor["anchor_top"]
+	#control.anchor_right = anchor["anchor_right"]
+	#control.anchor_bottom = anchor["anchor_bottom"] 
+	#
+	#control.grow_horizontal = anchor["grow_horizontal"]
+	#control.grow_vertical = anchor["grow_vertical"]
 
 func _setup():
 	log_label.custom_minimum_size.x = DisplayServer.window_get_size().x / 4
@@ -106,28 +106,29 @@ func _setup():
 	
 	_size = log_label.size
 	
-	
-	
 	log_label.add_theme_font_size_override("normal_font_size", _font_size)
 	
 	match _anchor:
 		0: # Top-Left
-			_set_control_anchor(log_label, ANCHORS["TOP_LEFT"])
+			#_set_control_anchor(log_label, ANCHORS["TOP_LEFT"])
+			log_label.set_anchors_preset(Control.PRESET_TOP_LEFT)
 			
+				
 		1: # Top-Right
-			_set_control_anchor(log_label, ANCHORS["TOP_RIGHT"])
-			
+			#_set_control_anchor(log_label, ANCHORS["TOP_RIGHT"])
+			log_label.set_anchors_preset(Control.PRESET_TOP_RIGHT)
 		2: # Bottom-Left
-			_set_control_anchor(log_label, ANCHORS["BOTTOM_LEFT"])
-			
+			#_set_control_anchor(log_label, ANCHORS["BOTTOM_LEFT"])
+			log_label.set_anchors_preset(Control.PRESET_BOTTOM_LEFT)
 		3: # Bottom-Right
-			_set_control_anchor(log_label, ANCHORS["BOTTOM_RIGHT"])
-	
+			#_set_control_anchor(log_label, ANCHORS["BOTTOM_RIGHT"])
+			log_label.set_anchors_preset(Control.PRESET_BOTTOM_RIGHT)
+	print(log_label.anchors_preset)
 	
 	color_rect.color = Color(_background_color)
 	
 	visible = _debug_enabled
-
+	
  
 func _load_config():
 	_plugin_config = ConfigFile.new()

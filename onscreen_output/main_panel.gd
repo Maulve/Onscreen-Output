@@ -1,22 +1,20 @@
 @tool
 class_name ScrnOutputMainPanel extends VBoxContainer
 
-var folder_icon = preload("res://addons/onscreen_output/Ignore/Folder.svg")
-
 var _plugin_config : ConfigFile
 
 var _config_path : String = "res://addons/onscreen_output/plugin.cfg"
 
-@onready var btn: Button = $BasicConfig/SavePath/Button
+@onready var btn: TextureButton = $BasicConfig/SavePath/Button
 var file_dialog : FileDialog
 
-@onready var line_edit_x: LineEdit = $Appearance/Size/X/LineEdit
-@onready var line_edit_y: LineEdit = $Appearance/Size/Y/LineEdit
+@onready var line_edit_x: SpinBox = $Appearance/Size/X/LineEdit
+@onready var line_edit_y: SpinBox = $Appearance/Size/Y/LineEdit
 
 func _ready():
 	_load_config()
 	
-	btn.texture_normal = folder_icon
+	btn.texture_normal = EditorInterface.get_base_control().get_theme_icon("Folder", "EditorIcons")
 	
 	$SaveButton.connect("pressed", _on_save_button_pressed)
 	

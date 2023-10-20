@@ -3,7 +3,6 @@
 [ext_resource type="Script" path="res://addons/onscreen_output/output.gd" id="1_ntmpl"]
 
 [node name="OnscreenOutput" type="CanvasLayer"]
-visible = false
 script = ExtResource("1_ntmpl")
 
 [node name="Control" type="Control" parent="."]
@@ -18,7 +17,6 @@ mouse_filter = 2
 [node name="RichTextLabel" type="RichTextLabel" parent="Control"]
 custom_minimum_size = Vector2(480, 501)
 layout_mode = 1
-anchors_preset = -1
 offset_right = 480.0
 offset_bottom = 501.0
 mouse_filter = 1
