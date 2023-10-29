@@ -53,5 +53,7 @@ All the improvements from this fork over Screen Console.
 # Roadmap
 Planned features and improvements
 
-- more UI improvements
+- rename to "Screen Output"
+- Improvements to Documentation
+- UI Improvements
 
