@@ -5,8 +5,6 @@ It is a fork of [Screen Console by joaoh82](https://github.com/joaoh82/screen_co
 This fork aims to improve the original. A lot of features already got reworked, and will
 continue to improve.
 
-Furthermore, this Onscreen Output will receive more features going forward.
-
 # Installation
 Direct Download from Github:
 
@@ -14,24 +12,36 @@ Step 1: Copy the `onscreen-output` folder from this repository
 
 Step 2: Put the folder into your Godot Project into your `addons` folder
 
-Step 3: Enable the Addon in Project > Project Settings > Plugins
-
-Step 4: Reload your Project
+Step 3: Follow `Setup`
 
 **OR**
 
-Download from the Asset Library! **(Currently Outdated, 1.0 coming soon to asset lib)**
-[On the website](https://godotengine.org/asset-library/asset/2244) or in the Godot Editor
+Download from the Asset Library! **Note that this version is out of date with the GitHub version**
+[On the website](https://godotengine.org/asset-library/asset/2244) or in the Godot Editor.
+
+Then follow `Setup`
+
+# Setup
+
+Step 1: Enable the Addon in Project > Project Settings > Plugins
+
+Step 2: Add autoload for "onscreen_output/output.tscn"
+
+Step 3: Reload your Project
+
+You can then use the scene from anywhere in your Project!
 
 ## Usage
 
-`scrnOutput.print(message : String)`
+Note: If your autoload name is different, you need to use your respective autoload name instead.
+
+`screenOutput.print(message : String)`
 
 Example:
-`scrnOutput.print("Hello World!")`
+`screenOutput.print("Hello World!")`
 
 # Improvements
-Improvements the fork already has
+All the improvements from this fork over Screen Console.
 
 - Output scrolling
 - Improved formatting with Timestamp
