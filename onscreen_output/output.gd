@@ -1,4 +1,6 @@
-extends CanvasLayer
+class_name ScreenOutputClass extends CanvasLayer
+
+@onready var install_path = self.get_script().get_path().trim_suffix("output.gd")
 
 var log_id: int = 1
 
@@ -12,12 +14,10 @@ var _save_logs: bool = false
 var _save_path: String = "user://"
 var _size: Vector2 = Vector2()
 
+@onready var _config_path: String = install_path + "plugin.cfg"
 var _plugin_config: ConfigFile
 
-var _config_path: String = "res://addons/onscreen_output/plugin.cfg"
-
 @onready var main_control: Control = $Control
-
 @onready var log_label: RichTextLabel = $Control/RichTextLabel
 @onready var color_rect: ColorRect = $Control/RichTextLabel/ColorRect
 
@@ -96,15 +96,18 @@ func _physics_process(_delta: float) -> void:
 	#control.grow_vertical = anchor["grow_vertical"]
 
 func _setup():
-	log_label.custom_minimum_size.x = DisplayServer.window_get_size().x / 4
-	log_label.custom_minimum_size.y = DisplayServer.window_get_size().y / 2
+	log_label.custom_minimum_size.x = DisplayServer.window_get_size().x / 6
+	log_label.custom_minimum_size.y = DisplayServer.window_get_size().y / 3
 	
 	if _size.x == 0:
-		_size.x = DisplayServer.window_get_size().x / 4
+		_size.x = DisplayServer.window_get_size().x / 6
+		_size = log_label.size
 	if _size.y == 0:
-		_size.y = DisplayServer.window_get_size().y / 2
+		_size.y = DisplayServer.window_get_size().y / 3
+		_size = log_label.size
 	
-	_size = log_label.size
+	log_label.size = _size
+	print(_size)
 	
 	log_label.add_theme_font_size_override("normal_font_size", _font_size)
 	
@@ -113,7 +116,6 @@ func _setup():
 			#_set_control_anchor(log_label, ANCHORS["TOP_LEFT"])
 			log_label.set_anchors_preset(Control.PRESET_TOP_LEFT)
 			
-				
 		1: # Top-Right
 			#_set_control_anchor(log_label, ANCHORS["TOP_RIGHT"])
 			log_label.set_anchors_preset(Control.PRESET_TOP_RIGHT)
@@ -123,7 +125,6 @@ func _setup():
 		3: # Bottom-Right
 			#_set_control_anchor(log_label, ANCHORS["BOTTOM_RIGHT"])
 			log_label.set_anchors_preset(Control.PRESET_BOTTOM_RIGHT)
-	print(log_label.anchors_preset)
 	
 	color_rect.color = Color(_background_color)
 	

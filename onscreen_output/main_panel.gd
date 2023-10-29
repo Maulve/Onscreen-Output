@@ -1,9 +1,12 @@
 @tool
-class_name ScrnOutputMainPanel extends VBoxContainer
+class_name ScreenOutputMainPanel extends VBoxContainer
+
+@onready var install_path: String = self.get_script().get_path().trim_suffix("main_panel.gd")
 
 var _plugin_config : ConfigFile
 
-var _config_path : String = "res://addons/onscreen_output/plugin.cfg"
+@onready var _config_path : String = install_path + "plugin.cfg"
+@onready var folder_icon = load(install_path + "Ignore/Folder.svg")
 
 @onready var btn: TextureButton = $BasicConfig/SavePath/Button
 var file_dialog : FileDialog
@@ -11,10 +14,19 @@ var file_dialog : FileDialog
 @onready var line_edit_x: SpinBox = $Appearance/Size/X/LineEdit
 @onready var line_edit_y: SpinBox = $Appearance/Size/Y/LineEdit
 
+## Determines how big the Output should be by default (when size_x is 0).
+## Default size is calculated like this: DisplayServer.window_get_size().x / default_divider_x.
+## Lower number means bigger size.
+@export var default_divider_x: float = 6
+
+## same as default_divider_x, but with y.
+## Lower number means bigger size.
+@export var default_divider_y: float = 3
+
 func _ready():
 	_load_config()
 	
-	btn.texture_normal = EditorInterface.get_base_control().get_theme_icon("Folder", "EditorIcons")
+	btn.texture_normal = folder_icon
 	
 	$SaveButton.connect("pressed", _on_save_button_pressed)
 	
@@ -51,13 +63,13 @@ func _load_config():
 	$Appearance/Size/X/LineEdit.value = int(_plugin_config.get_value("config", "size_x"))
 	var size_x = $Appearance/Size/X/LineEdit.value
 	if size_x == 0:
-		size_x = DisplayServer.window_get_size().x / 4
+		size_x = DisplayServer.window_get_size().x / default_divider_x
 		$Appearance/Size/X/LineEdit.value = size_x
 	
 	$Appearance/Size/Y/LineEdit.value = int(_plugin_config.get_value("config", "size_y"))
 	var size_y = $Appearance/Size/Y/LineEdit.value
 	if size_y == 0:
-		size_y = DisplayServer.window_get_size().y / 2
+		size_y = DisplayServer.window_get_size().y / default_divider_y
 		$Appearance/Size/Y/LineEdit.value = size_y
 	
 func _save_config():
@@ -80,14 +92,14 @@ func _save_config():
 	# calculate size if 0
 	var size_x = $Appearance/Size/X/LineEdit.value
 	if size_x == 0:
-		size_x = DisplayServer.window_get_size().x / 4
+		size_x = DisplayServer.window_get_size().x / default_divider_x
 		$Appearance/Size/X/LineEdit.value = size_x
 	
 	_plugin_config.set_value("config", "size_x", size_x)
 	
 	var size_y = $Appearance/Size/Y/LineEdit.value
 	if size_y == 0:
-		size_y = DisplayServer.window_get_size().y / 2
+		size_y = DisplayServer.window_get_size().y / default_divider_y
 		$Appearance/Size/Y/LineEdit.value = size_y
 	
 	_plugin_config.set_value("config", "size_y", size_y)

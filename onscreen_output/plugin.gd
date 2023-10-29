@@ -1,15 +1,20 @@
 @tool
-class_name OnscreenOutputPlugin extends EditorPlugin
+class_name ScreenOutputPlugin extends EditorPlugin
 
-const MAIN_PANEL = preload("res://addons/onscreen_output/main_panel.tscn")
+var install_path: String = self.get_script().get_path().trim_suffix("plugin.gd")
 
-var main_panel_instance : ScrnOutputMainPanel
+const SCREEN_OUTPUT_PATH: String = "output.tscn"
+const MAIN_PANEL_PATH: String = "main_panel.tscn"
 
-func _init() -> void:
-	add_autoload_singleton("scrnOutput", "res://addons/onscreen_output/output.tscn")
+var main_panel = load(install_path + MAIN_PANEL_PATH)
+
+var main_panel_instance: ScreenOutputMainPanel
+
+func get_install_path() -> String:
+	return install_path
 
 func _enter_tree():
-	main_panel_instance = MAIN_PANEL.instantiate()
+	main_panel_instance = main_panel.instantiate()
 	# Add the main panel to the editor's main viewport.
 	get_editor_interface().get_editor_main_screen().add_child(main_panel_instance)
 	# Hide the main panel. Very much required.
@@ -21,7 +26,7 @@ func _enter_tree():
 			_set_visible(true)
 		else:
 			_set_visible(false))
-	
+
 func _exit_tree():
 	if main_panel_instance:
 		main_panel_instance.queue_free()
