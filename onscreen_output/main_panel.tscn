@@ -1,98 +1,151 @@
-[gd_scene load_steps=6 format=3 uid="uid://bkw716jprs1ik"]
+[gd_scene load_steps=7 format=3 uid="uid://bkw716jprs1ik"]
 
-[ext_resource type="Script" path="res://addons/onscreen_output/main_panel.gd" id="1_trmv1"]
+[ext_resource type="Script" path="res://addons/screen_output/main_panel.gd" id="1_trmv1"]
+[ext_resource type="Texture2D" uid="uid://klt5srk2yq2" path="res://addons/screen_output/Ignore/Folder.svg" id="2_4jn81"]
+[ext_resource type="StyleBox" uid="uid://b7k4n4vbk5j77" path="res://addons/screen_output/screen_output_box.tres" id="2_v5sya"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_osyjl"]
 bg_color = Color(0, 0, 0.0941176, 0.168627)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
 [sub_resource type="LabelSettings" id="LabelSettings_0dncg"]
 font_size = 24
 
-[sub_resource type="Image" id="Image_vkrxu"]
-data = {
-"data": PackedByteArray(255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 224, 224, 224, 184, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 181, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 73, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 181, 255, 255, 255, 0, 255, 255, 255, 0, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 255, 255, 255, 0, 255, 255, 255, 0, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 255, 255, 255, 0, 255, 255, 255, 0, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 255, 255, 255, 0, 255, 255, 255, 0, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 255, 255, 255, 0, 255, 255, 255, 0, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 255, 255, 255, 0, 255, 255, 255, 0, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 255, 255, 255, 0, 255, 255, 255, 0, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 255, 255, 255, 0, 255, 255, 255, 0, 224, 224, 224, 181, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 255, 224, 224, 224, 180, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0, 255, 255, 255, 0),
-"format": "RGBA8",
-"height": 16,
-"mipmaps": false,
-"width": 16
-}
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0v7vq"]
+bg_color = Color(0, 0, 0.0509804, 0.745098)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
 
-[sub_resource type="ImageTexture" id="ImageTexture_veqvw"]
-image = SubResource("Image_vkrxu")
+[node name="MarginContainer" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
 
-[node name="MainPanel" type="VBoxContainer"]
-offset_left = 21.0
-offset_top = 18.0
-offset_right = 1208.0
-offset_bottom = 676.0
+[node name="MainPanel" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+size_flags_horizontal = 0
 theme_override_constants/separation = 15
 script = ExtResource("1_trmv1")
 
-[node name="BasicConfig" type="VBoxContainer" parent="."]
+[node name="General" type="VBoxContainer" parent="MainPanel"]
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
+size_flags_horizontal = 0
 
-[node name="Title" type="Label" parent="BasicConfig"]
+[node name="Title" type="Label" parent="MainPanel/General"]
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_osyjl")
-text = " Basic Config"
+text = "General"
 label_settings = SubResource("LabelSettings_0dncg")
+horizontal_alignment = 1
 
-[node name="DebugEnabled" type="HBoxContainer" parent="BasicConfig"]
+[node name="Control" type="Control" parent="MainPanel/General"]
+custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
-theme_override_constants/separation = 10
 
-[node name="Label" type="Label" parent="BasicConfig/DebugEnabled"]
+[node name="DebugEnabled" type="HBoxContainer" parent="MainPanel/General"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="MainPanel/General/DebugEnabled"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 text = "Debug Enabled: "
+horizontal_alignment = 1
 
-[node name="CheckBox" type="CheckBox" parent="BasicConfig/DebugEnabled"]
+[node name="CheckBox" type="CheckBox" parent="MainPanel/General/DebugEnabled"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
+theme_override_styles/normal = ExtResource("2_v5sya")
+theme_override_styles/pressed = ExtResource("2_v5sya")
+theme_override_styles/hover = ExtResource("2_v5sya")
+theme_override_styles/hover_pressed = ExtResource("2_v5sya")
+theme_override_styles/focus = ExtResource("2_v5sya")
 button_pressed = true
+text = "On"
 
-[node name="Timestamp" type="HBoxContainer" parent="BasicConfig"]
+[node name="Timestamp" type="HBoxContainer" parent="MainPanel/General"]
 layout_mode = 2
-theme_override_constants/separation = 10
 
-[node name="Label" type="Label" parent="BasicConfig/Timestamp"]
+[node name="Label" type="Label" parent="MainPanel/General/Timestamp"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 text = "Show timestamp: "
+horizontal_alignment = 1
 
-[node name="CheckBox" type="CheckBox" parent="BasicConfig/Timestamp"]
+[node name="CheckBox" type="CheckBox" parent="MainPanel/General/Timestamp"]
 layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/normal = ExtResource("2_v5sya")
+theme_override_styles/pressed = ExtResource("2_v5sya")
+theme_override_styles/hover = ExtResource("2_v5sya")
+theme_override_styles/hover_pressed = ExtResource("2_v5sya")
+theme_override_styles/focus = ExtResource("2_v5sya")
 button_pressed = true
+text = "On"
 
-[node name="Logfile" type="HBoxContainer" parent="BasicConfig"]
+[node name="Logfile" type="HBoxContainer" parent="MainPanel/General"]
 layout_mode = 2
-theme_override_constants/separation = 10
 
-[node name="Label" type="Label" parent="BasicConfig/Logfile"]
+[node name="Label" type="Label" parent="MainPanel/General/Logfile"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 text = "Save log files: "
+horizontal_alignment = 1
 
-[node name="CheckBox" type="CheckBox" parent="BasicConfig/Logfile"]
+[node name="CheckBox" type="CheckBox" parent="MainPanel/General/Logfile"]
+custom_minimum_size = Vector2(250, 0)
+layout_mode = 2
+theme_override_styles/normal = ExtResource("2_v5sya")
+theme_override_styles/pressed = ExtResource("2_v5sya")
+theme_override_styles/hover = ExtResource("2_v5sya")
+theme_override_styles/hover_pressed = ExtResource("2_v5sya")
+theme_override_styles/focus = ExtResource("2_v5sya")
+text = "On"
+
+[node name="SavePath" type="HBoxContainer" parent="MainPanel/General"]
 layout_mode = 2
 
-[node name="SavePath" type="HBoxContainer" parent="BasicConfig"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="Label" type="Label" parent="BasicConfig/SavePath"]
+[node name="Label" type="Label" parent="MainPanel/General/SavePath"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 text = "Save Path: "
+horizontal_alignment = 1
 
-[node name="TextEdit" type="TextEdit" parent="BasicConfig/SavePath"]
-custom_minimum_size = Vector2(300, 0)
+[node name="TextEdit" type="TextEdit" parent="MainPanel/General/SavePath"]
+custom_minimum_size = Vector2(215, 0)
 layout_mode = 2
-text = "user://OnscrnOutput_LOGS"
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = ExtResource("2_v5sya")
+theme_override_styles/focus = ExtResource("2_v5sya")
+text = "user://ScreenOutput-LOGS"
 scroll_fit_content_height = true
+caret_blink = true
+caret_multiple = false
 
-[node name="Button" type="TextureButton" parent="BasicConfig/SavePath"]
-custom_minimum_size = Vector2(20, 20)
+[node name="Button" type="Button" parent="MainPanel/General/SavePath"]
 layout_mode = 2
-texture_normal = SubResource("ImageTexture_veqvw")
-stretch_mode = 3
+size_flags_horizontal = 3
+theme_override_styles/normal = ExtResource("2_v5sya")
+theme_override_styles/hover = ExtResource("2_v5sya")
+theme_override_styles/disabled = ExtResource("2_v5sya")
+theme_override_styles/focus = ExtResource("2_v5sya")
+icon = ExtResource("2_4jn81")
+icon_alignment = 1
 
-[node name="FileDialog" type="FileDialog" parent="BasicConfig/SavePath/Button"]
+[node name="FileDialog" type="FileDialog" parent="MainPanel/General/SavePath/Button"]
 title = "Open a Directory"
 initial_position = 1
 size = Vector2i(1000, 500)
@@ -101,24 +154,32 @@ ok_button_text = "Select Current Folder"
 file_mode = 2
 access = 1
 
-[node name="Layout" type="VBoxContainer" parent="."]
+[node name="Layout" type="VBoxContainer" parent="MainPanel"]
+visible = false
 layout_mode = 2
 
-[node name="Title" type="Label" parent="Layout"]
+[node name="Title" type="Label" parent="MainPanel/Layout"]
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
+size_flags_horizontal = 0
 theme_override_styles/normal = SubResource("StyleBoxFlat_osyjl")
 text = " Layout
 "
 label_settings = SubResource("LabelSettings_0dncg")
+horizontal_alignment = 1
 
-[node name="Anchor" type="HBoxContainer" parent="Layout"]
+[node name="Control" type="Control" parent="MainPanel/Layout"]
+custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Layout/Anchor"]
+[node name="Anchor" type="HBoxContainer" parent="MainPanel/Layout"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainPanel/Layout/Anchor"]
 layout_mode = 2
 text = "Anchor to: "
 
-[node name="OptionButton" type="OptionButton" parent="Layout/Anchor"]
+[node name="OptionButton" type="OptionButton" parent="MainPanel/Layout/Anchor"]
 layout_mode = 2
 disabled = true
 item_count = 4
@@ -132,99 +193,106 @@ popup/item_2/id = 2
 popup/item_3/text = "Bottom-Right"
 popup/item_3/id = 3
 
-[node name="Appearance" type="VBoxContainer" parent="."]
+[node name="Appearance" type="VBoxContainer" parent="MainPanel"]
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
+size_flags_horizontal = 0
 
-[node name="Title" type="Label" parent="Appearance"]
+[node name="Title" type="Label" parent="MainPanel/Appearance"]
 layout_mode = 2
 theme_override_styles/normal = SubResource("StyleBoxFlat_osyjl")
 text = " Appearance
 "
 label_settings = SubResource("LabelSettings_0dncg")
+horizontal_alignment = 1
 
-[node name="FontColor" type="HBoxContainer" parent="Appearance"]
+[node name="Control" type="Control" parent="MainPanel/Appearance"]
+custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
-theme_override_constants/separation = 10
 
-[node name="Label" type="Label" parent="Appearance/FontColor"]
+[node name="FontColor" type="HBoxContainer" parent="MainPanel/Appearance"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MainPanel/Appearance/FontColor"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 text = "Font Color:"
+horizontal_alignment = 1
 
-[node name="ColorPickerButton" type="ColorPickerButton" parent="Appearance/FontColor"]
+[node name="ColorPickerButton" type="ColorPickerButton" parent="MainPanel/Appearance/FontColor"]
 layout_mode = 2
 size_flags_horizontal = 3
-color = Color(0.776471, 0.792157, 0.827451, 1)
+color = Color(0.278431, 0.0980392, 0.827451, 1)
 
-[node name="BGColor" type="HBoxContainer" parent="Appearance"]
+[node name="BGColor" type="HBoxContainer" parent="MainPanel/Appearance"]
 layout_mode = 2
-theme_override_constants/separation = 10
 
-[node name="Label" type="Label" parent="Appearance/BGColor"]
+[node name="Label" type="Label" parent="MainPanel/Appearance/BGColor"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 text = "Background Color:"
+horizontal_alignment = 1
 
-[node name="ColorPickerButton" type="ColorPickerButton" parent="Appearance/BGColor"]
+[node name="ColorPickerButton" type="ColorPickerButton" parent="MainPanel/Appearance/BGColor"]
 layout_mode = 2
 size_flags_horizontal = 3
 color = Color(0.0980392, 0.109804, 0.184314, 1)
 
-[node name="FontSize" type="HBoxContainer" parent="Appearance"]
+[node name="FontSize" type="HBoxContainer" parent="MainPanel/Appearance"]
 layout_mode = 2
-theme_override_constants/separation = 10
 
-[node name="Label" type="Label" parent="Appearance/FontSize"]
+[node name="Label" type="Label" parent="MainPanel/Appearance/FontSize"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 text = "Font Size: "
+horizontal_alignment = 1
 
-[node name="LineEdit" type="SpinBox" parent="Appearance/FontSize"]
+[node name="LineEdit" type="SpinBox" parent="MainPanel/Appearance/FontSize"]
 layout_mode = 2
 size_flags_horizontal = 3
 value = 16.0
 
-[node name="Size" type="HBoxContainer" parent="Appearance"]
+[node name="Size" type="HBoxContainer" parent="MainPanel/Appearance"]
 layout_mode = 2
-theme_override_constants/separation = 10
 
-[node name="Label" type="Label" parent="Appearance/Size"]
+[node name="Label" type="Label" parent="MainPanel/Appearance/Size"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 text = "Size: "
+horizontal_alignment = 1
 
-[node name="X" type="HBoxContainer" parent="Appearance/Size"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="Label" type="Label" parent="Appearance/Size/X"]
-layout_mode = 2
-text = "x:"
-
-[node name="LineEdit" type="SpinBox" parent="Appearance/Size/X"]
+[node name="X" type="SpinBox" parent="MainPanel/Appearance/Size"]
 layout_mode = 2
 size_flags_horizontal = 3
 max_value = 9999.0
-value = 240.0
+value = 320.0
+prefix = "x:"
+suffix = "px"
 
-[node name="Y" type="HBoxContainer" parent="Appearance/Size"]
-layout_mode = 2
-theme_override_constants/separation = 10
-
-[node name="Label" type="Label" parent="Appearance/Size/Y"]
-layout_mode = 2
-text = "y:"
-
-[node name="LineEdit" type="SpinBox" parent="Appearance/Size/Y"]
+[node name="Y" type="SpinBox" parent="MainPanel/Appearance/Size"]
 layout_mode = 2
 size_flags_horizontal = 3
 max_value = 9999.0
-value = 250.0
+value = 334.0
+prefix = "y:"
+suffix = "px"
 
-[node name="SaveButton" type="Button" parent="."]
+[node name="SaveButton" type="Button" parent="MainPanel"]
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = ExtResource("2_v5sya")
+theme_override_styles/hover = ExtResource("2_v5sya")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_0v7vq")
+theme_override_styles/focus = ExtResource("2_v5sya")
 text = "Save"
 
-[node name="Label" type="Label" parent="."]
+[node name="Label" type="Label" parent="MainPanel"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 16
 text = "Press Ctrl+Shift+A to hide/show the Output (in-game)."
+horizontal_alignment = 1
 
-[connection signal="pressed" from="BasicConfig/SavePath/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MainPanel/General/SavePath/Button" to="MainPanel" method="_on_button_pressed"]
+[connection signal="pressed" from="MainPanel/SaveButton" to="MainPanel" method="_save_config"]

@@ -73,12 +73,12 @@ func _ready():
 	event.ctrl_pressed = true
 	event.shift_pressed = true
 	
-	if !InputMap.has_action("OnscreenOutput_toggle"):
-		InputMap.add_action("OnscreenOutput_toggle")
-	InputMap.action_add_event("OnscreenOutput_toggle", event)
+	if !InputMap.has_action("screen_output_toggle"):
+		InputMap.add_action("screen_output_toggle")
+	InputMap.action_add_event("screen_output_toggle", event)
 
 func _physics_process(_delta: float) -> void:
-	if Input.is_action_just_pressed("OnscreenOutput_toggle"):
+	if Input.is_action_just_pressed("screen_output_toggle"):
 		visible = !visible
 
 #func _set_control_anchor(control: Control,anchor: Dictionary):
@@ -99,17 +99,10 @@ func _setup():
 	log_label.custom_minimum_size.x = DisplayServer.window_get_size().x / 6
 	log_label.custom_minimum_size.y = DisplayServer.window_get_size().y / 3
 	
-	if _size.x == 0:
-		_size.x = DisplayServer.window_get_size().x / 6
-		_size = log_label.size
-	if _size.y == 0:
-		_size.y = DisplayServer.window_get_size().y / 3
-		_size = log_label.size
-	
 	log_label.size = _size
-	print(_size)
 	
 	log_label.add_theme_font_size_override("normal_font_size", _font_size)
+	log_label.add_theme_color_override("default_color", Color(_font_color))
 	
 	match _anchor:
 		0: # Top-Left
@@ -133,10 +126,9 @@ func _setup():
  
 func _load_config():
 	_plugin_config = ConfigFile.new()
-	# Load data from a file.
+	
 	var err = _plugin_config.load(_config_path)
-
-	# If the file didn't load, ignore it.
+	
 	if err != OK:
 		printerr("Screen Output: Failed to load config. %s might be damaged or missing." % _config_path)
 		return
@@ -152,16 +144,20 @@ func _load_config():
 	log_id = int(_plugin_config.get_value("config", "log_id"))
 	_size.x = int(_plugin_config.get_value("config", "size_x"))
 	_size.y = int(_plugin_config.get_value("config", "size_y"))
+	
+	print(_font_color)
 
 func _save_config():
 	_plugin_config.set_value("config", "log_id", log_id)
 	
 	_plugin_config.save(_config_path)
 
+
+## Prints a message to the ScreenOutput. Works similar to the default output in the Editor.
+## If show_timestamp is enabled, a timestamp will also be displayed in yellow.
 func print(message: String):
 	if not _debug_enabled:
 		return
-	
 	
 	log_label.append_text(" > " + message)
 
@@ -172,6 +168,7 @@ func print(message: String):
 	
 	log_label.newline()
 
+## returns a timestamp since Game launch in XXmin:XXs:XXms format.
 func _get_timestamp() -> String:
 	var time_ms: int = Time.get_ticks_msec() - start
 	var time_s: int = 0
@@ -191,6 +188,8 @@ func _get_timestamp() -> String:
 	
 	return timestamp_string
 
+## if save_logs is true, this is triggered on Game close.
+## The log is saved to the configured save_path.
 func _notification(what):
 	if what == NOTIFICATION_WM_CLOSE_REQUEST and _save_logs:
 		
@@ -202,7 +201,7 @@ func _notification(what):
 		if !DirAccess.dir_exists_absolute(_save_path):
 			DirAccess.make_dir_absolute(_save_path)
 			
-		var file := FileAccess.open(_save_path + "OnscrnOutput_LOG%d.txt" % log_id, FileAccess.WRITE)
+		var file := FileAccess.open(_save_path + "ScreenOutput-LOG-%d.txt" % log_id, FileAccess.WRITE)
 		file.store_string(log_label.get_parsed_text())
 		file.close()
 		log_id += 1

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bjetmrco2b8bw"]
 
-[ext_resource type="Script" path="res://addons/onscreen_output/output.gd" id="1_ntmpl"]
+[ext_resource type="Script" path="res://addons/screen_output/output.gd" id="1_ntmpl"]
 
 [node name="OnscreenOutput" type="CanvasLayer"]
 script = ExtResource("1_ntmpl")

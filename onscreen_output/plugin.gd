@@ -8,7 +8,7 @@ const MAIN_PANEL_PATH: String = "main_panel.tscn"
 
 var main_panel = load(install_path + MAIN_PANEL_PATH)
 
-var main_panel_instance: ScreenOutputMainPanel
+var main_panel_instance: Node
 
 func get_install_path() -> String:
 	return install_path
@@ -22,7 +22,7 @@ func _enter_tree():
 	
 	# logic for showing the main scene
 	main_screen_changed.connect(func(screen_name):
-		if screen_name == "Onscreen Output":
+		if screen_name == "Screen Output":
 			_set_visible(true)
 		else:
 			_set_visible(false))
@@ -36,7 +36,7 @@ func _set_visible(visible):
 		main_panel_instance.visible = visible
 
 func _get_plugin_name():
-	return "Onscreen Output"
+	return "Screen Output"
 	
 func _has_main_screen():
 	return true
