@@ -1,5 +1,5 @@
-# Onscreen Output
-Onscreen Output is a logging tool made for Godot 4 that allows you to print messages to the screen for debugging and development purposes.
+# Screen Output
+Screen Output is a logging tool made for Godot 4 that allows you to print messages to the screen for debugging and development purposes.
 It is a fork of [Screen Console by joaoh82](https://github.com/joaoh82/screen_console).
 
 This fork aims to improve the original. A lot of features already got reworked, and will
@@ -8,7 +8,7 @@ continue to improve.
 # Installation
 Direct Download from Github:
 
-Step 1: Copy the `onscreen-output` folder from this repository
+Step 1: Copy the `screen-output` folder from this repository
 
 Step 2: Put the folder into your Godot Project into your `addons` folder
 
@@ -25,7 +25,7 @@ Then follow `Setup`
 
 Step 1: Enable the Addon in Project > Project Settings > Plugins
 
-Step 2: Add autoload for "onscreen_output/output.tscn"
+Step 2: Add autoload for "screen_output/output.tscn"
 
 Step 3: Reload your Project
 
@@ -43,17 +43,14 @@ Example:
 # Improvements
 All the improvements from this fork over Screen Console.
 
-- Output scrolling
-- Improved formatting with Timestamp
-- Anchor support
+- Output scrolling and optimizations
 - Hide/Show the Output with Ctrl+Shift+A
 - Export to file
 - Change the size of the Output
+- UI improvements
 
 # Roadmap
 Planned features and improvements
 
-- rename to "Screen Output"
 - Improvements to Documentation
-- UI Improvements
 
