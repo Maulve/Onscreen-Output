@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="OnscreenOutputConfig" load_steps=3 format=3 uid="uid://dmll45km8utg5"]
+
+[ext_resource type="Script" path="res://addons/onscreen_output/Ignore/config.gd" id="1_3h3uo"]
+[ext_resource type="InputEventKey" uid="uid://dr650bnyy3u75" path="res://addons/onscreen_output/Ignore/default_keybind.tres" id="2_vnvgg"]
+
+[resource]
+script = ExtResource("1_3h3uo")
+singleton_name = "Output"
+debug_enabled = true
+save_logs = false
+log_path = "user://"
+toggle_keybind = ExtResource("2_vnvgg")
+show_timestamp = true
+font_color = Color(0.776471, 0.792157, 0.827451, 1)
+background_color = Color(0.0980392, 0.109804, 0.184314, 1)
+font_size = 16.0
+anchor = 0
+size = Vector2(270, 540)
