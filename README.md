@@ -18,8 +18,8 @@ Step 4: Reload your project
 
 **OR**
 
-Download from the Asset Library! **(Currently Outdated and only for 4.1.x)**
-[On the website](https://godotengine.org/asset-library/asset/2244) or in the Godot Editor
+Download from the Asset Library! **(Currently Outdated)**
+[On the website](https://godotengine.org/asset-library/asset/2266) or in the Godot Editor
 
 ## Usage
 **Note: The singleton name can be changed.**
