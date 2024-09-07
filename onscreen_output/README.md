@@ -5,8 +5,6 @@ It is a fork of [Screen Console by joaoh82](https://github.com/joaoh82/screen_co
 This fork aims to improve the original. A lot of features already got reworked, and will
 continue to improve.
 
-Furthermore, this Onscreen Output will receive more features going forward.
-
 # Installation
 Direct Download from Github:
 
