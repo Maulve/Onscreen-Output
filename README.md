@@ -6,20 +6,26 @@ This fork aims to improve the original. A lot of features already got reworked, 
 continue to improve.
 
 # Installation
+
+Download from the Asset Library!
+
+Step 1: Download from [the website](https://godotengine.org/asset-library/asset/2266) or the Godot Editor
+
+Step 2: Enable addon in *Project>Project Settings>Plugins*
+
+Step 3: Reload your project
+
+**OR**
+
 Direct Download from Github:
 
-Step 1: Copy the `addons/onscreen-output` folder from this repository
+Step 1: Copy the `onscreen-output` folder from this repository
 
 Step 2: Put the folder into your Godot project
 
 Step 3: Enable the addon in *Project>Project Settings>Plugins*
 
 Step 4: Reload your project
-
-**OR**
-
-Download from the Asset Library! **(Currently Outdated)**
-[On the website](https://godotengine.org/asset-library/asset/2266) or in the Godot Editor
 
 ## Usage
 **Note: The singleton name can be changed.**
