@@ -1,4 +1,7 @@
 # Onscreen Output
+
+**!! Onscreen Output will no longer receive major updates. !!**
+
 Onscreen Output is a logging tool made for Godot 4 that allows you to print messages to the screen for debugging and development purposes.
 It is a fork of [Screen Console by joaoh82](https://github.com/joaoh82/screen_console).
 
@@ -48,8 +51,3 @@ You can configure Onscreen Output by editing the `config.tres` file.
 - Configurable keybind
 - Export to file
 - Change the size of the output
-
-# Roadmap
-Planned features and improvements
-
-- more UI improvements
